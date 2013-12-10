@@ -9,6 +9,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+
+#added
+gem 'activerecord-tableless'
+gem 'twitter'
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'
