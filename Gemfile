@@ -13,6 +13,9 @@ gem 'jbuilder', '~> 1.2'
 #added
 gem 'activerecord-tableless'
 gem 'twitter'
+gem 'figaro'
+gem 'simple_form'
+gem 'omniauth-twitter'
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'

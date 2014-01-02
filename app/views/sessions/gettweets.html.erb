@@ -1,0 +1,8 @@
+<table>
+<% @client.home_timeline.collect do |tweet| %>
+   <tr>
+     <td> <%="#{tweet.user.screen_name}:" %> </td>
+      <td> <%= "#{tweet.text}" %> </td>
+  </tr>
+<%end %>
+  </table>
