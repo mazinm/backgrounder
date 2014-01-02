@@ -14,14 +14,10 @@ class SessionsController < ApplicationController
   
   def gettweets
     @client = Twitter::REST::Client.new do |config|
-       config.consumer_key = "dJEtIoFxjo17pvRIgpzRg"
-      logger.debug ENV['CONSUMER_KEY']
-       config.consumer_secret = "2zqn3EZfJwPpLGrtwslUTSaIytqWoUHPYy8nqjsOuus"
-      logger.debug ENV['CONSUMER_SECRET']
-       config.access_token = "48182804-jp4uof0n3EGcRd5wASx9GAeQKc9wGgkyytWKL6ZJa"
-      logger.debug ENV['ACCESS_TOKEN']
-       config.access_token_secret = "7OIERKlexBEXm2Iv58sqTMGiXTaF2m4bwNhouTNRT10Nq"
-      logger.debug ENV['ACCESS_TOKEN_SECRET']
+      config.consumer_key = ENV['CONSUMER_KEY']
+      config.consumer_secret = ENV['CONSUMER_SECRET']
+      config.access_token = ENV['ACCESS_TOKEN']
+      config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
      end
   end
 end
