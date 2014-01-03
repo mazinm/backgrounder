@@ -25,8 +25,7 @@ class SessionsController < ApplicationController
     @h = {}
     gettweets
    
-    @client.home_timeline.collect do |tweet|
-      
+    @client.home_timeline('count' => 150).collect do |tweet|
       str = tweet.text
       str.split(" ").each do |word|
         if @h.key?(word)
@@ -34,10 +33,13 @@ class SessionsController < ApplicationController
         else 
           if word[0] == "#"  
           @h[word] = 1
+          end
         end
       end
-      end
-      @h.sort_by {|k,v| v}
     end
-  end
+    
+    sorted = @h.sort_by {|k,v| -v}
+    @top5 = sorted.first(5)
+    
+  end  
 end
