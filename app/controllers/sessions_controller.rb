@@ -17,9 +17,27 @@ class SessionsController < ApplicationController
       config.consumer_key = ENV['CONSUMER_KEY']
       config.consumer_secret = ENV['CONSUMER_SECRET']
       config.access_token = current_user.token
-      logger.debug current_user.token
       config.access_token_secret = current_user.secret
-      logger.debug current_user.secret
      end
+  end
+  
+  def findhashtags
+    @h = {}
+    gettweets
+   
+    @client.home_timeline.collect do |tweet|
+      
+      str = tweet.text
+      str.split(" ").each do |word|
+        if @h.key?(word)
+          @h[word] += 1
+        else 
+          if word[0] == "#"  
+          @h[word] = 1
+        end
+      end
+      end
+      @h.sort_by {|k,v| v}
+    end
   end
 end

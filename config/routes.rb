@@ -1,7 +1,8 @@
 Backgrounder::Application.routes.draw do
   root to: 'pages#index'
   
-  get "/sessions" => 'sessions#gettweets', :as => 'Tweets'
+  get "/sessions/gettweets" => 'sessions#gettweets', :as => 'tweets'
+  get "/sessions/findhashtags" => 'sessions#findhashtags', :as => 'hashtags'
    
   resources :users, :only => [:index, :show, :edit, :update ]
   get '/auth/:provider/callback' => 'sessions#create'
