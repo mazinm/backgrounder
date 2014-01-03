@@ -16,8 +16,10 @@ class SessionsController < ApplicationController
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV['CONSUMER_KEY']
       config.consumer_secret = ENV['CONSUMER_SECRET']
-      config.access_token = ENV['ACCESS_TOKEN']
-      config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
+      config.access_token = current_user.token
+      logger.debug current_user.token
+      config.access_token_secret = current_user.secret
+      logger.debug current_user.secret
      end
   end
 end
