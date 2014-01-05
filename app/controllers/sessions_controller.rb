@@ -22,24 +22,46 @@ class SessionsController < ApplicationController
   end
   
   def findhashtags
-    @h = {}
+    h = {}
     gettweets
    
-    @client.home_timeline('count' => 150).collect do |tweet|
+    @alltweets = @client.home_timeline('count' => 150).collect 
+    @alltweets.each do |tweet|
       str = tweet.text
       str.split(" ").each do |word|
-        if @h.key?(word)
-          @h[word] += 1
+        if h.key?(word)
+          h[word] += 1
         else 
           if word[0] == "#"  
-          @h[word] = 1
+          h[word] = 1
           end
         end
       end
     end
+    @top5 = h.sort_by {|k,v| -v}.first(5)
+    # .select{|k,v| v >= 3}
+    logger.debug @top5
+    selectedtweets = {}
     
-    sorted = @h.sort_by {|k,v| -v}
-    @top5 = sorted.first(5)
-    
+    @top5.each do |arr|
+     @alltweets.each do |twt|
+       twthash = {twt.text => twt.user.screen_name}
+       selectedtweets = twthash.keep_if{ |k,v| k.include? arr[0] }
+       
+       unless selectedtweets.blank?
+         logger.debug selectedtweets
+         unless arr[2].nil?
+           arr[2].merge!(selectedtweets)
+           logger.debug arr[2]
+         else
+           arr << selectedtweets
+         end
+         logger.debug arr
+       end
+       
+     end
+      selectedtweets.clear
+    end
+    logger.debug @top5
   end  
 end

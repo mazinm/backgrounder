@@ -1,1 +1,12 @@
-<%= @top5 %>
+<table>
+<% @top5.each do |arg| %>
+  <th> <%= arg[1]  %>  mentions of <%= arg[0] %> </th>
+  <% arg[2].each do |author, content| %>
+  <tr>
+    <td><%= author %></td>
+    <td><%= content %></td>
+  </tr>
+  <% end %>
+<% end %>
+  
+</table>
