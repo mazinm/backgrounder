@@ -16,6 +16,7 @@ gem 'twitter'
 gem 'figaro'
 gem 'simple_form'
 gem 'omniauth-twitter'
+gem 'google-search'
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'

@@ -2,7 +2,7 @@
   <% if current_user %>
     Welcome, <%= current_user.name %>!
     <%= link_to "Sign Out", signout_path %>
-    <%= link_to "Retrieve your personal trends", hashtags_path %>
+    <%= link_to "Retrieve your personal trends", backgrounder_path %>
   
   <% else %>
     <%= link_to "Sign in with Twitter", "/auth/twitter" %>

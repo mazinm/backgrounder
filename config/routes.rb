@@ -3,6 +3,7 @@ Backgrounder::Application.routes.draw do
   
   get "/sessions/gettweets" => 'sessions#gettweets', :as => 'tweets'
   get "/sessions/findhashtags" => 'sessions#findhashtags', :as => 'hashtags'
+  get "/sessions/providebackground" => 'sessions#providebackground', :as => 'backgrounder'
    
   resources :users, :only => [:index, :show, :edit, :update ]
   get '/auth/:provider/callback' => 'sessions#create'

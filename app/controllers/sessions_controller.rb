@@ -40,28 +40,38 @@ class SessionsController < ApplicationController
     end
     @top5 = h.sort_by {|k,v| -v}.first(5)
     # .select{|k,v| v >= 3}
-    logger.debug @top5
     selectedtweets = {}
     
     @top5.each do |arr|
      @alltweets.each do |twt|
        twthash = {twt.text => twt.user.screen_name}
        selectedtweets = twthash.keep_if{ |k,v| k.include? arr[0] }
-       
        unless selectedtweets.blank?
-         logger.debug selectedtweets
          unless arr[2].nil?
            arr[2].merge!(selectedtweets)
-           logger.debug arr[2]
          else
            arr << selectedtweets
          end
-         logger.debug arr
        end
-       
      end
       selectedtweets.clear
     end
-    logger.debug @top5
-  end  
+  end
+  
+  def providebackground
+    findhashtags
+    stories = {}
+    
+    @top5.each do |arr|
+      Google::Search::News.new do |search|
+        stories.clear
+        search.query = arr[0]
+        search.language = :eng
+        search.size = :small
+      end.take(5).each { |item| stories.merge!({item.uri => item.title.html_safe}) }
+      unless stories.blank?
+        arr << stories.clone
+      end
+    end
+  end
 end
