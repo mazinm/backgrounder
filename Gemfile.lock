@@ -54,6 +54,9 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    foundation-rails (5.0.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     google-search (1.0.3)
       json
     hashie (2.0.5)
@@ -176,6 +179,7 @@ DEPENDENCIES
   better_errors
   coffee-rails (~> 4.0.0)
   figaro
+  foundation-rails
   google-search
   jbuilder (~> 1.2)
   jquery-rails

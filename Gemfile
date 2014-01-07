@@ -16,6 +16,7 @@ gem 'figaro'
 gem 'simple_form'
 gem 'omniauth-twitter'
 gem 'google-search'
+gem 'foundation-rails'
 group :development do
   gem 'sqlite3'
   gem 'better_errors'
