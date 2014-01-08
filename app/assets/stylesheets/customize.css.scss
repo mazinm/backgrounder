@@ -1,13 +1,25 @@
+@import "foundation";
+
 #twitter-login
 { 
   position: fixed;
-  top: 50%;
+  top: 35%;
   left: 50%;
+  text-align: center;
   margin-top: -50px;
-  margin-left: -100px;
+  margin-left: -200px;
 }
 
 body
 {
- background: -webkit-gradient(linear, left top, left bottom, from(#99CCFF), to(#cbccc8)) fixed;
+ background: #005B99;
+ background: -webkit-gradient(linear, left top, left bottom, from(#005B99), to(#99BADD)) fixed;
+ background: -moz-linear-gradient(#005B99, #99BADD) fixed;
+ 
 }
+
+.twitter-button {
+  @extend button;
+  background-color: #005B99;
+}
+
