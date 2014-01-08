@@ -1,7 +1,7 @@
 <% content_for :title do %>Backgrounder<% end %>
 <table>
 <% @top5.each do |arg| %>
-  <th> <%= arg[1]  %>  mentions of <%= arg[0] %> </th>
+  <th> <%= arg[2].length  %>  mentions of <%= arg[0] %> </th>
   <% arg[2].each do |author, content| %>
   <tr>
     <td><%= author %></td>

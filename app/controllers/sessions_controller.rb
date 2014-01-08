@@ -24,22 +24,31 @@ class SessionsController < ApplicationController
   def findhashtags
     h = {}
     gettweets
+    stopwords = Array.new(File.foreach('app/assets/stopwords.txt').map { |line| line.split(' ') }).flatten
+      
+
    
     @alltweets = @client.home_timeline('count' => 150).collect 
     @alltweets.each do |tweet|
-      str = tweet.text
-      str.split(" ").each do |word|
+      logger.debug tweet.text
+      str = tweet.text.split.reject{ |x| stopwords.include?(x.downcase)}.reject{ |x| x[0] == "@" }
+      logger.debug str
+      str.each do |word|
         if h.key?(word)
           h[word] += 1
-        else 
-          if word[0] == "#"  
-          h[word] = 1
+        elsif word[0] == "#"
+          word.slice!(0)
+          unless h.key?(word)
+          h[word] = 2
+          else
+            h[word] +=2
           end
+        else
+          h[word] = 1
         end
       end
     end
-    @top5 = h.sort_by {|k,v| -v}.first(5)
-    # .select{|k,v| v >= 3}
+    @top5 = h.sort_by {|k,v| -v}.first(5).select{|k,v| v >= 3}
     selectedtweets = {}
     
     @top5.each do |arr|
