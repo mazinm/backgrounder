@@ -1,6 +1,21 @@
 @import "foundation";
-$include-html-table-classes: $include-html-classes !default;
-$table-even-row-bg: #99BADD;
+
+@media screen and (max-width: 750px) {
+  .tweets {
+    clear: right;
+    width: 90%;
+  }
+
+  .links {
+    float: left;
+    clear: left;
+    width: 90%;
+  }
+ul {
+  display:inline-block;
+  list-style-type: none;
+}
+}
 
 #twitter-login { 
   position: fixed;

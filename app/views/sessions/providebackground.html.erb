@@ -1,29 +1,62 @@
 <% content_for :title do %>Backgrounder<% end %>
+<% unless mobile_device? %>
 <%= image_tag("backgrounder.png", :alt => "logo", :style => "margin-top: 25px; margin-left: 25px; width: 390px;") %>
 <%= link_to "Sign Out", signout_path, class: "small twitter-button", style: "float: right; margin-top: 25px; margin-right: 25px;"%>
 <br /><br />
 
 <% @top5.each do |arg| %>
-  <ul class="small block grid">
+  <ul class="large block grid">
     <div class="row"><li class="tweets"><table class="results">
+      
       <th colspan="2" class="header"> <h3><%= arg[2].length  %>  mentions of "<%= arg[0] %>"</h3> </th>
       <% arg[2].each do |content, author| %>
       <tr>
         <td><%= auto_link(content) %></td>
         <td><%= author %></td>
       </tr>
-  <% end %>
-    </table></li>
-      <% unless arg[3].nil? %>
-    <li class="links"><table class="results">
-      <th class="header"> <h3> Stories from Google News </h3> </th>
-        <% arg[3].each do |url, title| %>
-        <tr>
-          <td><%= link_to title, url, :target => "_blank" %></td>
-        </tr>
+      
       <% end %>
-   </table></li>
+      </table></li>
+   
+      <% unless arg[3].nil? %>
+        <li class="links"><table class="results">
+          <th class="header"> <h3> Stories from Google News </h3> </th>
+            <% arg[3].each do |url, title| %>
+            <tr>
+              <td><%= link_to title, url, :target => "_blank" %></td>
+            </tr>
+      <% end %>
+       </table></li>
     </div>
   <% end %>
  </ul>
 <% end %>
+
+<% else %>
+
+<%= image_tag("backgrounder.png", :alt => "logo", :style => "margin-top: 5px; width: 390px;") %><br />
+<%= link_to "Sign Out", signout_path, class: "small twitter-button", style: "float: right; margin-top: 5px; clear: bottom;" %>
+<br /><br />
+  <% @top5.each do |arg| %>
+  <table>
+    <th colspan="2" class="header"> <h3><%= arg[2].length  %>  mentions of "<%= arg[0] %>"</h3> </th>
+    <% arg[2].each do |content, author| %>
+    <tr>
+      <td><%= auto_link(content) %></td>
+      <td><%= author %></td>
+    </tr>
+    <% end %>
+  </table>
+  <% unless arg[3].nil? %>
+      <table>
+          <th class="header"> <h3> Stories from Google News </h3> </th>
+            <% arg[3].each do |url, title| %>
+            <tr>
+              <td><%= link_to title, url, :target => "_blank" %></td>
+            </tr>
+            <% end %>
+       </table>
+      <% end %>
+  <% end %>
+<% end %>
+  
