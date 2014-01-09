@@ -1,5 +1,6 @@
 <% content_for :title do %>Sign in with Twitter!<% end %>
 <div id="user_nav">
+  <%= link_to "What is Backgrounder?", about_path, class: "small twitter-button" %>
   <% if current_user %>
   <div id="twitter-login">
     <%= image_tag("backgrounder.png", :alt => "logo", :style => "width: 390px;") %>

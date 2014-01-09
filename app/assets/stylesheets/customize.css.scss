@@ -26,6 +26,17 @@ ul {
   margin-left: -175px;
 }
 
+#about-page { 
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  width: 390px;
+  text-align: justify;
+  margin-top: -50px;
+  margin-left: -175px;
+  color: #333;
+}
+
 body {
  background: #99BADD;
  background: -webkit-gradient(linear, left top, left bottom, from(#005B99), to(#99BADD)) fixed;
