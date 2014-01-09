@@ -11,7 +11,7 @@
       <th colspan="2" class="header"> <h3><%= arg[2].length  %>  mentions of "<%= arg[0] %>"</h3> </th>
       <% arg[2].each do |content, author| %>
       <tr>
-        <td><%= auto_link(content) %></td>
+        <td><%= auto_link(content, :html => { :target => '_blank' }) %></td>
         <td><%= author %></td>
       </tr>
       
@@ -31,6 +31,9 @@
   <% end %>
  </ul>
 <% end %>
+
+<!-- if mobile device -->
+
 
 <% else %>
 

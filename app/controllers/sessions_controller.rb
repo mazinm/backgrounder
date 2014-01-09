@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
       
 
    
-    @alltweets = @client.home_timeline('count' => 150).collect 
+    @alltweets = @client.home_timeline('count' => 200).collect 
     @alltweets.each do |tweet|
       str = tweet.text.split.reject{ |x| stopwords.include?(x.downcase)}.reject{ |x| x[0] == "@" }
       str.each do |word|

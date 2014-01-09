@@ -4,6 +4,7 @@
   <div id="twitter-login">
     <%= image_tag("backgrounder.png", :alt => "logo", :style => "width: 390px;") %>
       <br /> <br />
+    <h3 id="splashpage">Summarize your Twitter feed.</h3><br />
     <%= link_to "Welcome back, #{current_user.name}", backgrounder_path, class: "button radius" %>
   </div>
   
@@ -11,6 +12,7 @@
   <div id="twitter-login">
     <%= image_tag("backgrounder.png", :alt => "logo", :style => "width: 390px;") %>
       <br /> <br />
+    <h3 id="splashpage">Summarize your Twitter feed.</h3><br />
     <%= link_to "Sign in with Twitter", "/auth/twitter", class: "large twitter-button radius" %>
   </div>
   <% end %>
