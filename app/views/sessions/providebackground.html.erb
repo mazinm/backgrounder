@@ -39,7 +39,7 @@
 
 <%= image_tag("backgrounder.png", :alt => "logo", :style => "margin-top: 5px; width: 390px;") %><br />
 <%= link_to "Sign Out", signout_path, class: "small twitter-button", style: "float: right; margin-top: 5px; clear: bottom;" %>
-<br /><br />
+<br /><br /><br />
   <% @top5.each do |arg| %>
   <table>
     <th colspan="2" class="header"> <h3><%= arg[2].length  %>  mentions of "<%= arg[0] %>"</h3> </th>
