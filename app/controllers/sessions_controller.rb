@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
-    redirect_to root_url, :notice => "Signed in!"
+    redirect_to backgrounder_path, :notice => "Signed in!"
   end
   
   def destroy
@@ -30,9 +30,7 @@ class SessionsController < ApplicationController
    
     @alltweets = @client.home_timeline('count' => 150).collect 
     @alltweets.each do |tweet|
-      logger.debug tweet.text
       str = tweet.text.split.reject{ |x| stopwords.include?(x.downcase)}.reject{ |x| x[0] == "@" }
-      logger.debug str
       str.each do |word|
         if h.key?(word)
           h[word] += 1
@@ -77,7 +75,7 @@ class SessionsController < ApplicationController
         search.query = arr[0]
         search.language = :eng
         search.size = :small
-      end.take(5).each { |item| stories.merge!({item.uri => item.title.html_safe}) }
+      end.take(arr[2].length).each { |item| stories.merge!({item.uri => item.title.html_safe}) }
       unless stories.blank?
         arr << stories.clone
       end

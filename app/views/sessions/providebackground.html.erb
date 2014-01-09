@@ -1,20 +1,29 @@
 <% content_for :title do %>Backgrounder<% end %>
-<table>
+<%= image_tag("backgrounder.png", :alt => "logo", :style => "margin-top: 25px; margin-left: 25px; width: 390px;") %>
+<%= link_to "Sign Out", signout_path, class: "small twitter-button", style: "float: right; margin-top: 25px; margin-right: 25px;"%>
+<br /><br />
+
 <% @top5.each do |arg| %>
-  <th> <%= arg[2].length  %>  mentions of <%= arg[0] %> </th>
-  <% arg[2].each do |author, content| %>
-  <tr>
-    <td><%= author %></td>
-    <td><%= content %></td>
-  </tr>
+  <ul class="small block grid">
+    <div class="row"><li class="tweets"><table class="results">
+      <th colspan="2" class="header"> <h3><%= arg[2].length  %>  mentions of "<%= arg[0] %>"</h3> </th>
+      <% arg[2].each do |content, author| %>
+      <tr>
+        <td><%= auto_link(content) %></td>
+        <td><%= author %></td>
+      </tr>
   <% end %>
-  <% unless arg[3].nil? %>
-    <% arg[3].each do |url, title| %>
-    <tr>
-      <td><%= link_to title, url, :target => "_blank" %></td>
-    </tr>
-    <% end %>
+    </table></li>
+      <% unless arg[3].nil? %>
+    <li class="links"><table class="results">
+      <th class="header"> <h3> Stories from Google News </h3> </th>
+        <% arg[3].each do |url, title| %>
+        <tr>
+          <td><%= link_to title, url, :target => "_blank" %></td>
+        </tr>
+      <% end %>
+   </table></li>
+    </div>
   <% end %>
+ </ul>
 <% end %>
-  
-</table>

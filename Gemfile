@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'omniauth-twitter'
 gem 'google-search'
 gem 'foundation-rails'
+gem 'rails_autolink'
 group :development do
   gem 'sqlite3'
   gem 'better_errors'

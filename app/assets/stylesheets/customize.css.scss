@@ -1,7 +1,8 @@
 @import "foundation";
+$include-html-table-classes: $include-html-classes !default;
+$table-even-row-bg: #99BADD;
 
-#twitter-login
-{ 
+#twitter-login { 
   position: fixed;
   top: 35%;
   left: 50%;
@@ -10,16 +11,49 @@
   margin-left: -175px;
 }
 
-body
-{
+body {
  background: #99BADD;
  background: -webkit-gradient(linear, left top, left bottom, from(#005B99), to(#99BADD)) fixed;
  background: -moz-linear-gradient(#005B99, #99BADD) fixed;
- 
 }
 
 .twitter-button {
   @extend button;
   background-color: #005B99;
+}
+
+.tweets {
+  float: left;
+  width: 45%;
+}
+
+.links {
+  float: right;
+  width: 45%;
+}
+
+ul {
+  display:inline;
+  list-style-type: none;
+}
+
+.header {
+  text-align: center;
+  text-shadow: 1px;
+  background-color: #99BADD;
+}
+
+table {
+
+  tr:nth-child(even) {
+    background-color: #fdf8cc;
+  }
+  tr:nth-child(odd) {
+    background-color: #99BADD;
+  }
+}
+
+a {
+  color: #005B99;
 }
 

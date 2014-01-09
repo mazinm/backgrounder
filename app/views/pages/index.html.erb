@@ -1,10 +1,10 @@
 <% content_for :title do %>Sign in with Twitter!<% end %>
 <div id="user_nav">
   <% if current_user %>
-  <div id="twitter-login"> 
-    Welcome, <%= current_user.name %>!
-    <%= link_to "Sign Out", signout_path %><br /><br />
-    <%= link_to "Retrieve your personal trends", backgrounder_path, class: "button radius" %>
+  <div id="twitter-login">
+    <%= image_tag("backgrounder.png", :alt => "logo", :style => "width: 390px;") %>
+      <br /> <br />
+    <%= link_to "Welcome back, #{current_user.name}", backgrounder_path, class: "button radius" %>
   </div>
   
   <% else %>
@@ -14,4 +14,4 @@
     <%= link_to "Sign in with Twitter", "/auth/twitter", class: "large twitter-button radius" %>
   </div>
   <% end %>
-</div>
+</div>    
