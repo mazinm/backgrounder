@@ -51,8 +51,14 @@ class SessionsController < ApplicationController
     
     @top5.each do |arr|
      @alltweets.each do |twt|
-       twthash = {twt.text => twt.user.screen_name}
-       selectedtweets = twthash.keep_if{ |k,v| k.include? arr[0] }
+       unless twt.retweeted_status?
+         twthash = {twt.text => twt.user.screen_name}
+       else
+         twthash = { twt.retweeted_status.text => twt.retweeted_status.user.screen_name } 
+       end
+       if twt.lang == "en"
+         selectedtweets = twthash.keep_if{ |k,v| k.include? arr[0] }
+       end
        unless selectedtweets.blank?
          unless arr[2].nil?
            arr[2].merge!(selectedtweets)
