@@ -30,6 +30,7 @@ class SessionsController < ApplicationController
    
     @alltweets = @client.home_timeline('count' => 200).collect 
     @alltweets.each do |tweet|
+    if tweet.lang == "en"
       str = tweet.text.split.reject{ |x| stopwords.include?(x.downcase)}.reject{ |x| x[0] == "@" }
       str.each do |word|
         if h.key?(word)
@@ -46,6 +47,7 @@ class SessionsController < ApplicationController
         end
       end
     end
+    end
     @top5 = h.sort_by {|k,v| -v}.first(5).select{|k,v| v >= 3}
     selectedtweets = {}
     
@@ -56,9 +58,7 @@ class SessionsController < ApplicationController
        else
          twthash = { twt.retweeted_status.text => twt.retweeted_status.user.screen_name } 
        end
-       if twt.lang == "en"
          selectedtweets = twthash.keep_if{ |k,v| k.include? arr[0] }
-       end
        unless selectedtweets.blank?
          unless arr[2].nil?
            arr[2].merge!(selectedtweets)
